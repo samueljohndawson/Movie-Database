@@ -8,7 +8,7 @@ import {
   CircularProgress,
   Paper,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { Movie } from "./AppStateTypes";
 import { postNewReview } from "./requests";
 
@@ -29,12 +29,15 @@ export const ReviewForm = ({ selectedMovie }: ReviewFormProps) => {
       postNewReview(selectedMovie.id, newReview).then((res) => {
         setResponseMessage(res.message);
         setSubmitted(true);
-        console.log("here");
       });
       setNewReview("");
     }
     setIsAwaitingResponse(false);
   };
+
+  useEffect(() => {
+    setSubmitted(false);
+  }, [selectedMovie]);
   return (
     <Paper sx={{ mt: 5 }}>
       {selectedMovie && !submitted && (

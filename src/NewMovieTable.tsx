@@ -38,7 +38,6 @@ export const NewMovieTable = ({ setSelectedMovie }: NewMovieTableProps) => {
   const handleClick = (movieId: number) => {
     const mov = movies.find((movie) => movie.id === movieId);
     setSelectedMovie(mov);
-    // setSubmitted(false);
   };
 
   const RefreshButton = () => {
