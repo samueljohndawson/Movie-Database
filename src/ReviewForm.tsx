@@ -15,7 +15,6 @@ import { postNewReview } from "./requests";
 interface ReviewFormProps {
   selectedMovie: Movie | undefined;
 }
-
 export const ReviewForm = ({ selectedMovie }: ReviewFormProps) => {
   const [isAwaitingResponse, setIsAwaitingResponse] = React.useState(false);
   const [submitted, setSubmitted] = React.useState(false);
@@ -23,12 +22,12 @@ export const ReviewForm = ({ selectedMovie }: ReviewFormProps) => {
   const [responseMessage, setResponseMessage] = React.useState<string>();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    setIsAwaitingResponse(true);
     event.preventDefault();
+    setIsAwaitingResponse(true);
+    setSubmitted(true);
     if (selectedMovie && newReview) {
       postNewReview(selectedMovie.id, newReview).then((res) => {
         setResponseMessage(res.message);
-        setSubmitted(true);
       });
       setNewReview("");
     }
@@ -39,7 +38,7 @@ export const ReviewForm = ({ selectedMovie }: ReviewFormProps) => {
     setSubmitted(false);
   }, [selectedMovie]);
   return (
-    <Paper sx={{ mt: 5 }}>
+    <Card sx={{ mt: 5 }}>
       {selectedMovie && !submitted && (
         <form onSubmit={(e) => handleSubmit(e)}>
           <CardContent>
@@ -75,7 +74,9 @@ export const ReviewForm = ({ selectedMovie }: ReviewFormProps) => {
         </form>
       )}
       {isAwaitingResponse ? (
-        <CircularProgress />
+        <CardContent>
+          <CircularProgress />
+        </CardContent>
       ) : (
         submitted && (
           <CardContent>
@@ -85,6 +86,6 @@ export const ReviewForm = ({ selectedMovie }: ReviewFormProps) => {
           </CardContent>
         )
       )}
-    </Paper>
+    </Card>
   );
 };

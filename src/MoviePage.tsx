@@ -2,7 +2,7 @@ import * as React from "react";
 import { Movie } from "./AppStateTypes";
 
 import { ReviewForm } from "./ReviewForm";
-import { NewMovieTable } from "./NewMovieTable";
+import { MovieTable } from "./MovieTable";
 import { ReviewFormModal } from "./ReviewFormModal";
 import { useWindowSize } from "react-use";
 
@@ -12,7 +12,7 @@ export default function MoviePage() {
 
   return (
     <>
-      <NewMovieTable setSelectedMovie={setSelectedMovie} />
+      <MovieTable setSelectedMovie={setSelectedMovie} />
       {selectedMovie &&
         (size.width > 600 ? (
           <ReviewForm selectedMovie={selectedMovie} />

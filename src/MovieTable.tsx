@@ -1,15 +1,15 @@
-import { Button, CircularProgress, Paper } from "@mui/material";
+import { Button, CircularProgress, createTheme, Paper } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Movie, MovieCompany, TableData } from "./AppStateTypes";
 import { calculateAverage } from "./helperFunctions";
 import React, { useEffect } from "react";
 import { fetchMovies, fetchMovieCompanies } from "./requests";
 
-interface NewMovieTableProps {
+interface MovieTableProps {
   setSelectedMovie: (movie: Movie | undefined) => void;
 }
 
-export const NewMovieTable = ({ setSelectedMovie }: NewMovieTableProps) => {
+export const MovieTable = ({ setSelectedMovie }: MovieTableProps) => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [movies, setMovies] = React.useState<Movie[]>([]);
   const [movieCompanies, setMovieCompanies] = React.useState<MovieCompany[]>(
