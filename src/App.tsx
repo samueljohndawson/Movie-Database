@@ -1,4 +1,4 @@
-import MoviePage from "./MoviePage";
+import MoviePage from "./Pages/MoviePage";
 
 export const App = () => {
   return <MoviePage />;

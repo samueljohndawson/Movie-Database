@@ -1,4 +1,4 @@
-import { Movie, MovieCompany } from "./AppStateTypes";
+import { Movie, MovieCompany } from "../AppStateTypes";
 
 export const fetchMovies = async () => {
   let data: Movie[] = [];
@@ -31,19 +31,4 @@ export const fetchMovieCompanies = async () => {
   }
 
   return data;
-};
-
-export const postNewReview = async (movieId: number, review: string) => {
-  const response = await fetch("http://localhost:4321/submitReview", {
-    method: "POST",
-    body: JSON.stringify({
-      movieId: movieId,
-      review: review,
-    }),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  });
-
-  return response.json();
 };

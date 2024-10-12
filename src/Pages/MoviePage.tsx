@@ -1,9 +1,9 @@
 import * as React from "react";
-import { Movie } from "./AppStateTypes";
+import { Movie } from "../AppStateTypes";
 
-import { ReviewForm } from "./ReviewForm";
-import { MovieTable } from "./MovieTable";
-import { ReviewFormModal } from "./ReviewFormModal";
+import { ReviewForm } from "../Components/ReviewForm";
+import { MovieTable } from "../Components/MovieTable";
+import { ReviewFormModal } from "../Components/ReviewFormModal";
 import { useWindowSize } from "react-use";
 
 export default function MoviePage() {

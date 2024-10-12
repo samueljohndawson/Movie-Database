@@ -6,11 +6,10 @@ import {
   CardActions,
   Button,
   CircularProgress,
-  Paper,
 } from "@mui/material";
 import React, { useEffect } from "react";
-import { Movie } from "./AppStateTypes";
-import { postNewReview } from "./requests";
+import { Movie } from "../AppStateTypes";
+import { postNewReview } from "../requests/postRequests";
 
 interface ReviewFormProps {
   selectedMovie: Movie | undefined;

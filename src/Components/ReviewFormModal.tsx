@@ -1,6 +1,6 @@
 import { Button, Dialog, DialogActions } from "@mui/material";
 import { ReviewForm } from "./ReviewForm";
-import { Movie } from "./AppStateTypes";
+import { Movie } from "../AppStateTypes";
 import React, { useEffect } from "react";
 
 interface ReviewFormModalProps {

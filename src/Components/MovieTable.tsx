@@ -1,9 +1,9 @@
 import { Button, CircularProgress, createTheme, Paper } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { Movie, MovieCompany, TableData } from "./AppStateTypes";
-import { calculateAverage } from "./helperFunctions";
+import { Movie, MovieCompany, TableData } from "../AppStateTypes";
+import { calculateAverage } from "../helperFunctions/movieTableHelperFunctions";
 import React, { useEffect } from "react";
-import { fetchMovies, fetchMovieCompanies } from "./requests";
+import { fetchMovies, fetchMovieCompanies } from "../requests/getRequests";
 
 interface MovieTableProps {
   setSelectedMovie: (movie: Movie | undefined) => void;
