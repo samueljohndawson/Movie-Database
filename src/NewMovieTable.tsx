@@ -1,34 +1,21 @@
-import { Paper } from "@mui/material";
+import { Button, CircularProgress, Paper } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Movie, MovieCompany, TableData } from "./AppStateTypes";
 import { calculateAverage } from "./helperFunctions";
 import React, { useEffect } from "react";
 import { fetchMovies, fetchMovieCompanies } from "./requests";
 
-export const newMovieTable = () => {
+interface NewMovieTableProps {
+  setSelectedMovie: (movie: Movie | undefined) => void;
+}
+
+export const NewMovieTable = ({ setSelectedMovie }: NewMovieTableProps) => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [movies, setMovies] = React.useState<Movie[]>([]);
   const [movieCompanies, setMovieCompanies] = React.useState<MovieCompany[]>(
     []
   );
   const [rows, setRows] = React.useState<TableData[]>([]);
-
-  const RefreshButton = () => {
-    if (movieCompanies) {
-      return (
-        <Button
-          variant="contained"
-          onClick={() => {
-            fetchData();
-          }}
-        >
-          {"Refresh"}
-        </Button>
-      );
-    } else {
-      return <p>No movies loaded yet</p>;
-    }
-  };
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -47,10 +34,28 @@ export const newMovieTable = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
   const handleClick = (movieId: number) => {
     const mov = movies.find((movie) => movie.id === movieId);
     setSelectedMovie(mov);
     // setSubmitted(false);
+  };
+
+  const RefreshButton = () => {
+    if (movieCompanies) {
+      return (
+        <Button
+          variant="contained"
+          onClick={() => {
+            fetchData();
+          }}
+        >
+          {"Refresh"}
+        </Button>
+      );
+    } else {
+      return <p>No movies loaded yet</p>;
+    }
   };
 
   const columns: GridColDef[] = [
@@ -77,17 +82,26 @@ export const newMovieTable = () => {
     }));
   };
 
-  return (
+  return isLoading ? (
+    <CircularProgress />
+  ) : !movies.length || !movieCompanies.length ? (
+    <>
+      <p>{"Unable to load movie data. Click to try again."}</p>
+      <RefreshButton />
+    </>
+  ) : (
     <Paper sx={{ height: 400, width: "100%" }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        sx={{ border: 0 }}
-        onRowClick={(data) => {
-          handleClick(data.row.id);
-        }}
-        disableColumnResize
-      />
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          sx={{ border: 0, width: "100%" }}
+          onRowClick={(data) => {
+            handleClick(data.row.id);
+          }}
+          disableColumnResize
+        />
+      </div>
     </Paper>
   );
 };

@@ -6,6 +6,7 @@ import {
   CardActions,
   Button,
   CircularProgress,
+  Paper,
 } from "@mui/material";
 import React from "react";
 import { Movie } from "./AppStateTypes";
@@ -35,7 +36,7 @@ export const ReviewForm = ({ selectedMovie }: ReviewFormProps) => {
     setIsAwaitingResponse(false);
   };
   return (
-    <Card sx={{ minWidth: 275, width: 600, mt: 5 }}>
+    <Paper sx={{ mt: 5 }}>
       {selectedMovie && !submitted && (
         <form onSubmit={(e) => handleSubmit(e)}>
           <CardContent>
@@ -81,6 +82,6 @@ export const ReviewForm = ({ selectedMovie }: ReviewFormProps) => {
           </CardContent>
         )
       )}
-    </Card>
+    </Paper>
   );
 };

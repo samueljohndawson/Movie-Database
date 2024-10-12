@@ -1,5 +1,5 @@
-import EnhancedTable from "./MovieTable";
+import MoviePage from "./MoviePage";
 
 export const App = () => {
-  return <EnhancedTable />;
+  return <MoviePage />;
 };
