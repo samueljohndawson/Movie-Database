@@ -84,6 +84,8 @@ export const MovieTable = ({ setSelectedMovie }: MovieTableProps) => {
   return (
     <>
       <h1>Movie Table</h1>
+      <p>Total movies: {movies.length}</p>
+
       {isLoading ? (
         <CircularProgress />
       ) : !movies.length || !movieCompanies.length ? (
