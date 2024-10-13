@@ -1,6 +1,6 @@
 import { Movie } from "../AppStateTypes";
 import { expect, test, describe, it } from "@jest/globals";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { ReviewFormModal } from "./ReviewFormModal";
 import "@testing-library/jest-dom/jest-globals";
@@ -21,11 +21,13 @@ describe("ReviewFormModal component", () => {
     expect(screen.getByText("Test Movie")).toBeInTheDocument();
   });
 
-  it("closes when the close button is clicked", () => {
+  it("closes when the close button is clicked", async () => {
     const { getByText } = render(<ReviewFormModal selectedMovie={mockMovie} />);
     const closeButton = getByText("Close");
     fireEvent.click(closeButton);
-    expect(screen.queryByText("Test Movie")).not.toBeInTheDocument();
+    await waitFor(() =>
+      expect(screen.queryByText("Close")).not.toBeInTheDocument()
+    );
   });
 
   it("does not render when selectedMovie is undefined", () => {
