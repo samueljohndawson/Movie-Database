@@ -4,7 +4,6 @@ import MoviePage from "../Pages/MoviePage";
 import "@testing-library/jest-dom/jest-globals";
 import "@testing-library/jest-dom";
 import "../requests/getRequests";
-import { Movie, MovieCompany } from "../AppStateTypes";
 
 jest.mock("../requests/getRequests", () => {
   return {
