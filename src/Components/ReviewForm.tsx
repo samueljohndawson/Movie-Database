@@ -39,7 +39,7 @@ export const ReviewForm = ({ selectedMovie }: ReviewFormProps) => {
   return (
     <Card sx={{ mt: 5 }}>
       {selectedMovie && !submitted && (
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={(e) => handleSubmit(e)} aria-label="Submit new review">
           <CardContent>
             <Typography
               gutterBottom
@@ -63,10 +63,15 @@ export const ReviewForm = ({ selectedMovie }: ReviewFormProps) => {
               inputProps={{ maxLength: 100, "data-testid": "review-input" }}
               required
               onChange={(e) => setNewReview(e.target.value)}
+              aria-label="Review input"
             />
           </CardContent>
           <CardActions>
-            <Button variant="contained" type="submit">
+            <Button
+              variant="contained"
+              type="submit"
+              aria-label="Submit review"
+            >
               Submit
             </Button>
           </CardActions>

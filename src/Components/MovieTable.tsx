@@ -1,4 +1,4 @@
-import { Button, CircularProgress, createTheme, Paper } from "@mui/material";
+import { Button, CircularProgress, Paper } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Movie, MovieCompany, TableData } from "../AppStateTypes";
 import { calculateAverage } from "../helperFunctions/movieTableHelperFunctions";
@@ -99,6 +99,7 @@ export const MovieTable = ({ setSelectedMovie }: MovieTableProps) => {
             height: 400,
             width: "100%",
           }}
+          aria-label="List of movies with their titles, reviews, and movie companies"
         >
           <DataGrid
             rows={rows}
