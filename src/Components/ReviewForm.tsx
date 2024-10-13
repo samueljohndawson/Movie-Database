@@ -60,7 +60,7 @@ export const ReviewForm = ({ selectedMovie }: ReviewFormProps) => {
               multiline
               label="Review"
               variant="outlined"
-              inputProps={{ maxLength: 100 }}
+              inputProps={{ maxLength: 100, "data-testid": "review-input" }}
               required
               onChange={(e) => setNewReview(e.target.value)}
             />

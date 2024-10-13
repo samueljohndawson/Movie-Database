@@ -1,5 +1,4 @@
-import { Movie } from "../AppStateTypes";
-import { expect, test, describe, it } from "@jest/globals";
+import { expect, describe, it } from "@jest/globals";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { ReviewFormModal } from "./ReviewFormModal";
