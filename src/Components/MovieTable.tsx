@@ -92,18 +92,21 @@ export const MovieTable = ({ setSelectedMovie }: MovieTableProps) => {
           <RefreshButton />
         </>
       ) : (
-        <Paper sx={{ height: 400, width: "100%" }}>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              sx={{ border: 0, width: "100%" }}
-              onRowClick={(data) => {
-                handleClick(data.row.id);
-              }}
-              disableColumnResize
-            />
-          </div>
+        <Paper
+          sx={{
+            height: 400,
+            width: "100%",
+          }}
+        >
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            sx={{ border: 0, width: "100%" }}
+            onRowClick={(data) => {
+              handleClick(data.row.id);
+            }}
+            disableColumnResize
+          />
         </Paper>
       )}
     </>
