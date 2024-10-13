@@ -81,26 +81,31 @@ export const MovieTable = ({ setSelectedMovie }: MovieTableProps) => {
     }));
   };
 
-  return isLoading ? (
-    <CircularProgress />
-  ) : !movies.length || !movieCompanies.length ? (
+  return (
     <>
-      <p>{"Unable to load movie data. Click to try again."}</p>
-      <RefreshButton />
+      <h1>Movie Table</h1>
+      {isLoading ? (
+        <CircularProgress />
+      ) : !movies.length || !movieCompanies.length ? (
+        <>
+          <p>{"Unable to load movie data. Click to try again."}</p>
+          <RefreshButton />
+        </>
+      ) : (
+        <Paper sx={{ height: 400, width: "100%" }}>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              sx={{ border: 0, width: "100%" }}
+              onRowClick={(data) => {
+                handleClick(data.row.id);
+              }}
+              disableColumnResize
+            />
+          </div>
+        </Paper>
+      )}
     </>
-  ) : (
-    <Paper sx={{ height: 400, width: "100%" }}>
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          sx={{ border: 0, width: "100%" }}
-          onRowClick={(data) => {
-            handleClick(data.row.id);
-          }}
-          disableColumnResize
-        />
-      </div>
-    </Paper>
   );
 };
