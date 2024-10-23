@@ -24,18 +24,22 @@ export const ReviewForm = ({ selectedMovie }: ReviewFormProps) => {
     event.preventDefault();
     setIsAwaitingResponse(true);
     setSubmitted(true);
+
     if (selectedMovie && newReview) {
-      postNewReview(selectedMovie.id, newReview).then((res) => {
+      try {
+        const res = await postNewReview(selectedMovie.id, newReview);
         setResponseMessage(res.message);
-      });
-      setNewReview("");
+        setNewReview("");
+      } catch (error) {
+        console.error("Failed to post new review:", error);
+        setResponseMessage("Error submitting review.");
+      } finally {
+        setIsAwaitingResponse(false);
+        setTimeout(() => setSubmitted(false), 5000);
+      }
     }
-    setIsAwaitingResponse(false);
   };
 
-  useEffect(() => {
-    setSubmitted(false);
-  }, [selectedMovie]);
   return (
     <Card sx={{ mt: 5 }}>
       {selectedMovie && !submitted && (
