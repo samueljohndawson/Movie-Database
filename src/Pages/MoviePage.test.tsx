@@ -1,7 +1,5 @@
-import * as React from "react";
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import MoviePage from "../Pages/MoviePage";
-import "@testing-library/jest-dom/jest-globals";
 import "@testing-library/jest-dom";
 import "../requests/getRequests";
 

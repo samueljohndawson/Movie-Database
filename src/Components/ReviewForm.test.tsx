@@ -2,9 +2,7 @@ import { render, waitFor, fireEvent, screen } from "@testing-library/react";
 import { ReviewForm } from "./ReviewForm";
 import { Movie } from "../AppStateTypes";
 import { postNewReview } from "../requests/postRequests";
-import React from "react";
 import "@testing-library/jest-dom/jest-globals";
-import "@testing-library/jest-dom";
 
 jest.mock("../requests/postRequests");
 

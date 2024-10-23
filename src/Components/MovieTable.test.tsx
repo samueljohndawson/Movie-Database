@@ -1,9 +1,7 @@
 import { render, waitFor, screen, fireEvent } from "@testing-library/react";
 import { MovieTable } from "./MovieTable";
 import { fetchMovies, fetchMovieCompanies } from "../requests/getRequests";
-import React from "react";
 import "@testing-library/jest-dom/jest-globals";
-import "@testing-library/jest-dom";
 
 jest.mock("../requests/getRequests");
 

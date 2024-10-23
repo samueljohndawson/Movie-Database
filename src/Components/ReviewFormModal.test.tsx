@@ -1,9 +1,7 @@
 import { expect, describe, it } from "@jest/globals";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import { ReviewFormModal } from "./ReviewFormModal";
 import "@testing-library/jest-dom/jest-globals";
-import React from "react";
 
 describe("ReviewFormModal component", () => {
   const mockMovie = {
