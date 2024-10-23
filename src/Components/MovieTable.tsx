@@ -4,6 +4,7 @@ import { Movie, MovieCompany, TableData } from "../AppStateTypes";
 import { calculateAverage } from "../helperFunctions/movieTableHelperFunctions";
 import React, { useEffect } from "react";
 import { fetchMovies, fetchMovieCompanies } from "../requests/getRequests";
+import { RefreshButton } from "./RefreshButton";
 
 interface MovieTableProps {
   setSelectedMovie: (movie: Movie | undefined) => void;
@@ -40,23 +41,6 @@ export const MovieTable = ({ setSelectedMovie }: MovieTableProps) => {
     setSelectedMovie(mov);
   };
 
-  const RefreshButton = () => {
-    if (movieCompanies) {
-      return (
-        <Button
-          variant="contained"
-          onClick={() => {
-            fetchData();
-          }}
-        >
-          {"Refresh"}
-        </Button>
-      );
-    } else {
-      return <p>No movies loaded yet</p>;
-    }
-  };
-
   const columns: GridColDef[] = [
     { field: "title", headerName: "Title", flex: 4 },
     { field: "review", headerName: "Review", type: "number", flex: 2 },
@@ -91,7 +75,7 @@ export const MovieTable = ({ setSelectedMovie }: MovieTableProps) => {
       ) : !movies.length || !movieCompanies.length ? (
         <>
           <p>{"Unable to load movie data. Click to try again."}</p>
-          <RefreshButton />
+          <RefreshButton onClick={fetchData} />
         </>
       ) : (
         <Paper
