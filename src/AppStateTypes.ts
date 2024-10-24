@@ -18,3 +18,7 @@ export type TableData = {
   review: number;
   movieCompany: string;
 };
+
+export type ReviewResponse = {
+  message: string;
+};

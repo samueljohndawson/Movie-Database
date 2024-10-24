@@ -21,15 +21,16 @@ export const MovieTable = ({ setSelectedMovie }: MovieTableProps) => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const movieData = await fetchMovies();
-      const companyData = await fetchMovieCompanies();
+      const movieData: Movie[] = await fetchMovies();
+      const companyData: MovieCompany[] = await fetchMovieCompanies();
       setMovies(movieData);
       setMovieCompanies(companyData);
       setRows(createRows(movieData, companyData));
     } catch (err) {
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   useEffect(() => {

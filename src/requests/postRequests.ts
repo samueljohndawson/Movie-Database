@@ -1,6 +1,4 @@
-interface ReviewResponse {
-  message: string;
-}
+import { ReviewResponse } from "../AppStateTypes";
 
 export const postNewReview = async (
   movieId: number,

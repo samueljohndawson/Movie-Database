@@ -8,7 +8,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import React, { useEffect } from "react";
-import { Movie } from "../AppStateTypes";
+import { Movie, ReviewResponse } from "../AppStateTypes";
 import { postNewReview } from "../requests/postRequests";
 
 interface ReviewFormProps {
@@ -27,7 +27,10 @@ export const ReviewForm = ({ selectedMovie }: ReviewFormProps) => {
 
     if (selectedMovie && newReview) {
       try {
-        const res = await postNewReview(selectedMovie.id, newReview);
+        const res: ReviewResponse = await postNewReview(
+          selectedMovie.id,
+          newReview
+        );
         setResponseMessage(res.message);
         setNewReview("");
       } catch (error) {
@@ -37,6 +40,9 @@ export const ReviewForm = ({ selectedMovie }: ReviewFormProps) => {
         setIsAwaitingResponse(false);
         setTimeout(() => setSubmitted(false), 5000);
       }
+    } else {
+      setIsAwaitingResponse(false);
+      setSubmitted(false);
     }
   };
 
@@ -75,6 +81,7 @@ export const ReviewForm = ({ selectedMovie }: ReviewFormProps) => {
               variant="contained"
               type="submit"
               aria-label="Submit review"
+              disabled={Boolean(!selectedMovie || !newReview)}
             >
               Submit
             </Button>
